@@ -1,26 +1,19 @@
-import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-core';
+import { EventEmitter, Subscription } from "expo-modules-core";
 
-// Import the native module. On web, it will be resolved to ExpoSamplePedometer.web.ts
-// and on native platforms to ExpoSamplePedometer.ts
-import ExpoSamplePedometerModule from './ExpoSamplePedometerModule';
-import ExpoSamplePedometerView from './ExpoSamplePedometerView';
-import { ChangeEventPayload, ExpoSamplePedometerViewProps } from './ExpoSamplePedometer.types';
+import ExpoSamplePedometerModule from "./ExpoSamplePedometerModule";
 
-// Get the native constant value.
-export const PI = ExpoSamplePedometerModule.PI;
+const emitter = new EventEmitter(ExpoSamplePedometerModule);
 
-export function hello(): string {
-  return ExpoSamplePedometerModule.hello();
+export type StepChangeEvent = {
+  step: number;
+};
+
+export function startSendingData(): string {
+  return ExpoSamplePedometerModule.startSendingData();
 }
 
-export async function setValueAsync(value: string) {
-  return await ExpoSamplePedometerModule.setValueAsync(value);
+export function addStepChangedListener(
+  listener: (event: StepChangeEvent) => void
+): Subscription {
+  return emitter.addListener<StepChangeEvent>("onStepCounted", listener);
 }
-
-const emitter = new EventEmitter(ExpoSamplePedometerModule ?? NativeModulesProxy.ExpoSamplePedometer);
-
-export function addChangeListener(listener: (event: ChangeEventPayload) => void): Subscription {
-  return emitter.addListener<ChangeEventPayload>('onChange', listener);
-}
-
-export { ExpoSamplePedometerView, ExpoSamplePedometerViewProps, ChangeEventPayload };
