@@ -1,0 +1,43 @@
+{
+  "name": "expo-sample-pedometer",
+  "version": "0.1.0",
+  "description": "A Sample Pedometer made in Expo",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module",
+    "open:ios": "open -a \"Xcode\" example/ios",
+    "open:android": "open -a \"Android Studio\" example/android"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "expo-sample-pedometer",
+    "ExpoSamplePedometer"
+  ],
+  "repository": "https://github.com/friyiajr/expo-sample-pedometer",
+  "bugs": {
+    "url": "https://github.com/friyiajr/expo-sample-pedometer/issues"
+  },
+  "author": "Daniel Friyia <dfriyia@gmail.com> (https://github.com/friyiajr)",
+  "license": "MIT",
+  "homepage": "https://github.com/friyiajr/expo-sample-pedometer#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "@types/react-native": "^0.70.6",
+    "expo-module-scripts": "^3.0.4",
+    "expo-modules-core": "^1.1.0"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}

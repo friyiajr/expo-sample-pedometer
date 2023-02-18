@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-sample-pedometer": ["../src/index"],
+      "expo-sample-pedometer/*": ["../src/*"]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "platforms": ["ios", "android", "web"],
+  "ios": {
+    "modules": ["ExpoSamplePedometerModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.samplepedometer.ExpoSamplePedometerModule"]
+  }
+}
