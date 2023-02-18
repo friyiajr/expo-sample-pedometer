@@ -8,7 +8,11 @@ export type StepChangeEvent = {
   step: number;
 };
 
-export function startSendingData(): string {
+export function requestPermissions() {
+  return ExpoSamplePedometerModule.requestPermissions();
+}
+
+export function startSendingData() {
   return ExpoSamplePedometerModule.startSendingData();
 }
 

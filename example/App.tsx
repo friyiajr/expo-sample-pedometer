@@ -1,14 +1,14 @@
+import * as ExpoSamplePedometer from "expo-sample-pedometer";
+import React, { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
-import * as ExpoSamplePedometer from "expo-sample-pedometer";
-import React from "react";
-
 export default function App() {
+  const [steps, setSteps] = useState(0);
+
   React.useEffect(() => {
-    console.log("HELLO");
     const subscription = ExpoSamplePedometer.addStepChangedListener(
       ({ step }) => {
-        console.log(step);
+        setSteps(step);
       }
     );
 
@@ -18,12 +18,23 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button
+        title="Request Permissions"
+        onPress={() => {
+          ExpoSamplePedometer.requestPermissions();
+        }}
+      />
+      <View
+        style={{
+          height: 50,
+        }}
+      />
+      <Button
         title="Start Counting Steps"
         onPress={() => {
           ExpoSamplePedometer.startSendingData();
         }}
       />
-      <Text>Welcome to the Step Counter</Text>
+      <Text style={{ fontSize: 30 }}>{steps}</Text>
     </View>
   );
 }
