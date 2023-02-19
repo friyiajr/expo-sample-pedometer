@@ -46,6 +46,8 @@
         </dict>
       </dict>
     </dict>
+    <key>NSMotionUsageDescription</key>
+    <string>Needs Permission for Steps</string>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>
