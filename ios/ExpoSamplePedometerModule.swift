@@ -13,7 +13,7 @@ public class ExpoSamplePedometerModule: Module {
         Events(kOnStepCounted)
 
         Function("requestPermissions") {
-            print("Only needed in Android")
+            pedometer.stopEventUpdates()
         }
         
         Function("startSendingData") {
