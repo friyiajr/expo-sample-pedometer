@@ -1,41 +1,61 @@
-import * as ExpoSamplePedometer from "expo-sample-pedometer";
-import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import {
+  requestPermissions,
+  addStepChangedListener,
+  startSendingData,
+} from "expo-sample-pedometer";
+import { useEffect, useState } from "react";
+import {
+  TouchableOpacity,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 export default function App() {
-  const [steps, setSteps] = useState(0);
+  const [isPermissionAllowed, setIsPermissionAllowed] = useState(false);
+  const [numOfSteps, setNumOfSteps] = useState(0);
 
-  React.useEffect(() => {
-    const subscription = ExpoSamplePedometer.addStepChangedListener(
-      ({ step }) => {
-        setSteps(step);
-      }
-    );
+  useEffect(() => {
+    const sub = addStepChangedListener(({ step }) => {
+      setNumOfSteps(step);
+    });
 
-    return () => subscription.remove();
+    return () => sub.remove();
   }, []);
 
+  const requestPermissionsRN = () => {
+    requestPermissions();
+    setIsPermissionAllowed(true);
+  };
+
+  const startTracking = () => {
+    startSendingData();
+  };
+
   return (
-    <View style={styles.container}>
-      <Button
-        title="Request Permissions"
-        onPress={() => {
-          ExpoSamplePedometer.requestPermissions();
-        }}
-      />
-      <View
-        style={{
-          height: 50,
-        }}
-      />
-      <Button
-        title="Start Counting Steps"
-        onPress={() => {
-          ExpoSamplePedometer.startSendingData();
-        }}
-      />
-      <Text style={{ fontSize: 30 }}>{steps}</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.mainContent}>
+        {isPermissionAllowed ? (
+          <>
+            <Text style={styles.stepsTitle}>Steps Taken</Text>
+            <Text style={styles.stepsFont}>{numOfSteps}</Text>
+          </>
+        ) : (
+          <Text style={styles.requestFont}>
+            Please Enable Step Counting Permissions
+          </Text>
+        )}
+      </View>
+      <TouchableOpacity
+        style={styles.ctaButton}
+        onPress={isPermissionAllowed ? startTracking : requestPermissionsRN}
+      >
+        <Text style={styles.ctaButtonText}>
+          {isPermissionAllowed ? "Start Tracking" : "Request Permissions"}
+        </Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 }
 
@@ -43,7 +63,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+  },
+  mainContent: {
+    flex: 1,
     justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 25,
+  },
+  requestFont: {
+    fontWeight: "bold",
+    fontSize: 25,
+    textAlign: "center",
+  },
+  stepsFont: {
+    fontSize: 224,
+    fontWeight: "300",
+  },
+  stepsTitle: {
+    fontSize: 50,
+    fontWeight: "bold",
+  },
+  ctaButton: {
+    height: 60,
+    borderRadius: 8,
+    backgroundColor: "purple",
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 25,
+    marginBottom: 10,
+  },
+  ctaButtonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
