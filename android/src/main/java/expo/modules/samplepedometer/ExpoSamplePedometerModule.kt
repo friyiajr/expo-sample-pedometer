@@ -67,5 +67,9 @@ class ExpoSamplePedometerModule: Module() {
         sensorManager?.registerListener(stepListener, stepSensor, SensorManager.SENSOR_DELAY_UI)
       }
     }
+
+    Function("stopSendingData") {
+      sensorManager?.unregisterListener(stepListener)
+    }
   }
 }

@@ -16,6 +16,10 @@ export function startSendingData() {
   return ExpoSamplePedometerModule.startSendingData();
 }
 
+export function stopSendingData() {
+  return ExpoSamplePedometerModule.stopSendingData();
+}
+
 export function addStepChangedListener(
   listener: (event: StepChangeEvent) => void
 ): Subscription {
