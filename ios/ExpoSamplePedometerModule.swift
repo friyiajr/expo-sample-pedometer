@@ -6,23 +6,30 @@ public class ExpoSamplePedometerModule: Module {
     let kOnStepCounted = "onStepCounted"
 
     public func definition() -> ModuleDefinition {
-        let pedometer = CMPedometer()
+        var pedometer: CMPedometer? = nil
 
         Name("ExpoSamplePedometer")
         
         Events(kOnStepCounted)
 
         Function("requestPermissions") {
-            pedometer.stopEventUpdates()
+            pedometer = CMPedometer()
+            pedometer?.stopEventUpdates()
         }
         
         Function("startSendingData") {
-            pedometer.startUpdates(from: Date()) { pedometerData, error in
+            pedometer = CMPedometer()
+            pedometer?.startUpdates(from: Date()) { pedometerData, error in
             guard let pedometerData = pedometerData, error == nil else { return }
                 self.sendEvent(self.kOnStepCounted, [
                    "step": pedometerData.numberOfSteps.intValue
                 ])
             }
         }
+      
+       Function("stopSendingData") {
+           pedometer?.stopEventUpdates()
+           pedometer = nil
+       }
     }
 }

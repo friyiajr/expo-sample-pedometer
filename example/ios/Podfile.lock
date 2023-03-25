@@ -16,7 +16,7 @@ PODS:
   - ExpoModulesCore (1.1.1):
     - React-Core
     - ReactCommon/turbomodule/core
-  - ExpoSamplePedometer (0.1.0):
+  - ExpoSamplePedometer (0.1.2):
     - ExpoModulesCore
   - EXSplashScreen (0.17.5):
     - ExpoModulesCore
@@ -450,7 +450,7 @@ SPEC CHECKSUMS:
   Expo: b9fa98bf260992312ee3c424400819fb9beadafe
   ExpoKeepAwake: 69b59d0a8d2b24de9f82759c39b3821fec030318
   ExpoModulesCore: 485dff3a59b036a33b6050c0a5aea3cf1037fdd1
-  ExpoSamplePedometer: f790d80fc99c32ee4b80460acf16f9fa030d920f
+  ExpoSamplePedometer: 724d2614256b6f9ae74231c07d72ea5bfde7eab0
   EXSplashScreen: 3e989924f61a8dd07ee4ea584c6ba14be9b51949
   FBLazyVector: affa4ba1bfdaac110a789192f4d452b053a86624
   FBReactNativeSpec: fe8b5f1429cfe83a8d72dc8ed61dc7704cac8745

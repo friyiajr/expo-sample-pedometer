@@ -2,6 +2,7 @@ import {
   requestPermissions,
   addStepChangedListener,
   startSendingData,
+  stopSendingData,
 } from "expo-sample-pedometer";
 import { useEffect, useState } from "react";
 import {
@@ -33,6 +34,11 @@ export default function App() {
     startSendingData();
   };
 
+  const stopTracking = () => {
+    stopSendingData();
+    setNumOfSteps(0);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.mainContent}>
@@ -54,6 +60,9 @@ export default function App() {
         <Text style={styles.ctaButtonText}>
           {isPermissionAllowed ? "Start Tracking" : "Request Permissions"}
         </Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.ctaButton} onPress={stopTracking}>
+        <Text style={styles.ctaButtonText}>Stop Tracking</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
