@@ -1,6 +1,6 @@
 {
   "name": "expo-sample-pedometer",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A Sample Pedometer made in Expo",
   "main": "build/index.js",
   "types": "build/index.d.ts",
